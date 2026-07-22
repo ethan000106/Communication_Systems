@@ -1,156 +1,88 @@
+```markdown
 <div align="center">
 
+# 📡 FPGA Serial Communication Protocol IP Suite (SPI & I2C)
 
+![Language](https://img.shields.io/badge/Language-SystemVerilog-blue?style=for-the-badge&logo=SystemVerilog)
+![Protocols](https://img.shields.io/badge/Protocols-SPI%20%26%20I2C-orange?style=for-the-badge)
+![EDA](https://img.shields.io/badge/EDA-AMD_Vivado-red?style=for-the-badge&logo=Xilinx)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-\# 📡 FPGA Serial Communication Protocol IP Suite (SPI \& I2C)
-
-
-
-!\[Language](https://img.shields.io/badge/Language-SystemVerilog%20%2F%20Verilog-blue?style=for-the-badge\&logo=SystemVerilog)
-
-!\[Protocol](https://img.shields.io/badge/Protocol-SPI%20%26%20I2C-orange?style=for-the-badge)
-
-!\[EDA](https://img.shields.io/badge/EDA-Vivado%20%2F%20ModelSim-red?style=for-the-badge)
-
-!\[License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-
-
-\*\*FPGA 기반 온칩/오프칩 통신을 위한 SPI 및 I2C 직렬 통신 프로토콜 IP 코어 설계 및 검증 라이브러리\*\*
-
-
+**FPGA 기반 온칩/오프칩 시스템 구현을 위한 SPI 및 I2C 직렬 통신 프로토콜 IP 코어 종합 라이브러리**
 
 </div>
 
+---
 
+## ✨ Supported Communication IPs
 
-\---
+| Protocol | RTL Modules | Features & Specifications |
+| :--- | :--- | :--- |
+| ⚡ **SPI Protocol** | `spi_master.sv`, `spi_slave.sv`, `spi_top.sv` | Full-Duplex, Mode 0~3 (CPOL/CPHA), SCLK/MOSI/MISO/CS_N Control |
+| 🚌 **I2C Protocol** | `i2c_master.sv`, `i2c_slave.sv`, `i2c_demo_top.sv` | Open-Drain SDA/SCL 양방향 버스 제어, 7-bit Address Matching, ACK/NACK |
 
+---
 
-
-\## ✨ Supported Communication Protocols
-
-
-
-| Protocol | Mode / Feature | Clock / Speed | Control Flags |
-
-| :--- | :--- | :--- | :--- |
-
-| ⚡ \*\*SPI (Serial Peripheral Interface)\*\* | Master/Slave, Full-Duplex | CPOL / CPHA (Mode 0\~3) | SCLK, MOSI, MISO, CS\_N |
-
-| 🚌 \*\*I2C (Inter-Integrated Circuit)\*\* | Master/Slave, Multi-Byte | Standard (100kHz) / Fast (400kHz) | SCL, SDA (Open-Drain, ACK/NACK) |
-
-
-
-\---
-
-
-
-\## 📊 System Architecture \& Protocol Overview
-
-
+## 📊 System Architecture
 
 ```mermaid
-
 graph TD
+    %% Styles
+    classDef spi fill:#e3f2fd,stroke:#1565c0,stroke-width:2px;
+    classDef i2c fill:#fff3e0,stroke:#e65100,stroke-width:2px;
 
-&#x20;   subgraph SPI\_Module \["⚡ SPI Communication Protocol"]
+    subgraph SPI_Suite ["⚡ SPI Communication Suite"]
+        SPI_M["👑 SPI Master<br/>(spi_master.sv)"]:::spi
+        SPI_S["🛡️ SPI Slave<br/>(spi_slave.sv)"]:::spi
+        SPI_M <-->|SCLK / MOSI / MISO / CS_N| SPI_S
+    end
 
-&#x20;       SPI\_M\["👑 SPI Master"] <-->|SCLK / MOSI / MISO / CS\_N| SPI\_S\["🛡️ SPI Slave"]
-
-&#x20;   end
-
-
-
-&#x20;   subgraph I2C\_Module \["🚌 I2C Communication Protocol"]
-
-&#x20;       I2C\_M\["👑 I2C Master"] <-->|SCL / SDA (Open-Drain Bus)| I2C\_S\["🛡️ I2C Slave"]
-
-&#x20;   end
-
+    subgraph I2C_Suite ["🚌 I2C Communication Suite"]
+        I2C_M["👑 I2C Master<br/>(i2c_master.sv)"]:::i2c
+        I2C_S["🛡️ I2C Slave<br/>(i2c_slave.sv)"]:::i2c
+        I2C_M <-->|SCL / SDA (Open-Drain)| I2C_S
+    end
 ```
 
+---
 
-
-\---
-
-
-
-\## 📂 Directory Structure
-
-
+## 📂 Directory Structure
 
 ```text
-
 📦 Communication
-
-&#x20;┣ 📂 rtl
-
-&#x20;┃ ┣ 📂 spi             # SPI Master/Slave RTL Source Files
-
-&#x20;┃ ┗ 📂 i2c             # I2C Master/Slave RTL Source Files
-
-&#x20;┣ 📂 tb
-
-&#x20;┃ ┣ 📂 spi             # SPI Testbench Verification Files
-
-&#x20;┃ ┗ 📂 i2c             # I2C Testbench Verification Files
-
-&#x20;┣ 📂 docs              # Protocol Timing Diagrams \& Documentation
-
-&#x20;┗ 📜 .gitignore        # EDA Garbage File Filters
-
+ ┣ 📂 rtl
+ ┃ ┣ 📂 spi/            # SPI Master/Slave & Top RTL Source Files
+ ┃ ┗ 📂 i2c/            # I2C Master/Slave & Top RTL Source Files
+ ┣ 📂 tb
+ ┃ ┣ 📂 spi/            # SPI Testbench Simulation Files
+ ┃ ┗ 📂 i2c/            # I2C Testbench Simulation Files
+ ┣ 📂 docs/             # Protocol Timing Diagrams & Docs
+ ┗ 📜 .gitignore        # EDA Garbage File Filter
 ```
 
+---
 
+## 🛠️ Simulation Guide (AMD Vivado XSIM)
 
-\---
-
-
-
-\## 🛠️ Simulation \& Verification Guide
-
-
-
-\### 1️⃣ SPI Simulation
-
+### 1️⃣ SPI Simulation
 ```bash
-
-vlog -sv rtl/spi/\*.sv tb/spi/\*.sv
-
-vsim -voptargs="+acc" tb\_spi
-
+xvlog -sv rtl/spi/*.sv tb/spi/*.sv
+xelab tb_spi_master -s tb_spi_sim -debug typical
+xsim tb_spi_sim -gui
 ```
 
-
-
-\### 2️⃣ I2C Simulation
-
+### 2️⃣ I2C Simulation
 ```bash
-
-vlog -sv rtl/i2c/\*.sv tb/i2c/\*.sv
-
-vsim -voptargs="+acc" tb\_i2c
-
+xvlog -sv rtl/i2c/*.sv tb/i2c/*.sv
+xelab tb_i2c_master -s tb_i2c_sim -debug typical
+xsim tb_i2c_sim -gui
 ```
 
+---
 
+## 👨‍💻 Author
 
-\---
-
-
-
-\## 👨‍💻 Author
-
-
-
-\- \*\*GitHub\*\*: \[@ethan000106](https://github.com/ethan000106)
-
+- **GitHub**: [@ethan000106](https://github.com/ethan000106)
+- **License**: MIT License
 ```
-
-
-
-\---
-
-
 
