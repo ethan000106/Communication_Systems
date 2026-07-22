@@ -1,0 +1,20 @@
+# Vivado & EDA Junk Files
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+.Xil/
+
+# Waveforms & Logs
+*.vcd
+*.wdb
+*.fsdb
+*.log
+*.jou
+*.pb
+transcript
+
+# OS Files
+.DS_Store
+Thumbs.db

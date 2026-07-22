@@ -1,0 +1,7 @@
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+c:/ondevice2026_kang/class/system_verilog_file/20260415_I2C/20260415_I2C.srcs/sources_1/new/i2c_demo_top.sv,1776477763,systemVerilog,,,,i2c_demo_top,,,,,,,,
+c:/ondevice2026_kang/class/system_verilog_file/20260415_I2C/20260415_I2C.srcs/sources_1/new/i2c_master.sv,1776385339,systemVerilog,,,,I2C_Master;i2c_master,,,,,,,,
+c:/ondevice2026_kang/class/system_verilog_file/20260415_I2C/20260415_I2C.srcs/sources_1/new/i2c_slave.sv,1776506566,systemVerilog,,,,bcd;clk_div;counter_4;decoder_2_4;digit_splitter;edge_detector;fnd_controller;i2c_slave;mux4_1,,,,,,,,
