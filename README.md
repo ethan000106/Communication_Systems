@@ -1,15 +1,3 @@
-
-
-\### 📄 4. 포트폴리오용 `README.md` 작성
-
-
-
-터미널에서 `notepad README.md` 실행 후 아래 내용을 붙여넣고 저장합니다:
-
-
-
-```markdown
-
 <div align="center">
 
 
@@ -157,8 +145,6 @@ vsim -voptargs="+acc" tb\_i2c
 
 
 \- \*\*GitHub\*\*: \[@ethan000106](https://github.com/ethan000106)
-
-\- \*\*License\*\*: MIT License
 
 ```
 
