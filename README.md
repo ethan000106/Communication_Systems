@@ -1,5 +1,5 @@
 
-# 📡 FPGA Serial Communication Protocol IP Suite (SPI & I2C)
+# 📡 FPGA Serial Communication Protocol IP (SPI & I2C)
 
 ![Language](https://img.shields.io/badge/Language-SystemVerilog-blue)
 ![Protocols](https://img.shields.io/badge/Protocols-SPI%20%26%20I2C-orange)
