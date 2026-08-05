@@ -4,7 +4,6 @@
 ![Language](https://img.shields.io/badge/Language-SystemVerilog-blue)
 ![Protocols](https://img.shields.io/badge/Protocols-SPI%20%26%20I2C-orange)
 ![EDA](https://img.shields.io/badge/EDA-AMD_Vivado-red)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 본 프로젝트는 FPGA 기반 온칩/오프칩 시스템 구현을 위한 **SPI (Serial Peripheral Interface)** 및 **I2C (Inter-Integrated Circuit)** 직렬 통신 프로토콜 IP 코어 종합 라이브러리입니다.
 
@@ -61,6 +60,21 @@ graph LR
 xvlog -sv rtl/spi/*.sv tb/spi/*.sv
 xelab tb_spi_master -s tb_spi_sim -debug typical
 xsim tb_spi_sim -gui
+
+# 1. VCS Compile & Elaboration (KDB/Coverage/FSDB 옵션 적용)
+vcs -sverilog -kdb -debug_access+all \
+    -cm line+cond+fsm+tgl+branch \
+    -f filelist_spi.f \
+    -top tb_spi_master \
+    -o simv_spi
+
+# 2. Simulation Execution & Coverage/FSDB Extraction
+./simv_spi -cm line+cond+fsm+tgl+branch -cm_name spi_test_cov
+
+# 3. Verdi GUI Debugging & Coverage Viewing
+verdi -ssf nova.fsdb &
+urg -dir simv_spi.vdb -report urgReport_spi   # 커버리지 리포트 생성
+
 ```
 
 ### 2. I2C Simulation (AMD Vivado XSIM)
@@ -68,6 +82,20 @@ xsim tb_spi_sim -gui
 xvlog -sv rtl/i2c/*.sv tb/i2c/*.sv
 xelab tb_i2c_master -s tb_i2c_sim -debug typical
 xsim tb_i2c_sim -gui
+
+# 1. VCS Compile & Elaboration
+vcs -sverilog -kdb -debug_access+all \
+    -cm line+cond+fsm+tgl+branch \
+    -f filelist_i2c.f \
+    -top tb_i2c_master \
+    -o simv_i2c
+
+# 2. Simulation Execution
+./simv_i2c -cm line+cond+fsm+tgl+branch -cm_name i2c_test_cov
+
+# 3. Verdi GUI Debugging
+verdi -ssf nova.fsdb &
+urg -dir simv_i2c.vdb -report urgReport_i2c
 ```
 
 ---
