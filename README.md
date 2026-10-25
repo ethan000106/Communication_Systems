@@ -220,6 +220,8 @@ I2C AXI 슬레이브 IP를 대상으로 UVM 환경(Driver · Monitor · Sequence
   <img src="docs/demo_spi_read.png" alt="SPI master reads LED according to slave switches" width="48%">
 </p>
 
+> ▶ **[SPI 구현 영상 보기](docs/implementation_spi.mp4)**
+
 ### I2C — AXI + UART Log
 
 * 스위치 값을 읽어 FND와 LED에 Write하고, UART를 통해 PC로 로그를 출력.
@@ -227,6 +229,8 @@ I2C AXI 슬레이브 IP를 대상으로 UVM 환경(Driver · Monitor · Sequence
 <p align="center">
   <img src="docs/demo_i2c.jpg" alt="I2C test: switch to FND/LED write and UART log" width="30%">
 </p>
+
+> ▶ **[I2C 구현 영상 보기](docs/implementation_i2c.mp4)**
 
 ---
 
